@@ -13,6 +13,25 @@ import java.util.Enumeration;
  */
 import java.util.Enumeration;
 
-public class Statement {
+public abstract class Statement {
+    public String value(Customer aCustomer) {
+        Enumeration rentals = aCustomer.getRentals();
+        String result = Header(aCustomer);
+        
+        while (rentals.hasMoreElements()) {
+           Rental each = (Rental) rentals.nextElement();
+           //show figures for this rental
+           result += Middle(each);
+        }
+        
+        result += Footer(aCustomer);
+        
+        return result;
+    }
 
+    abstract String Header(Customer aCustomer);
+    
+    abstract String Middle(Rental each);
+    
+    abstract String Footer(Customer aCustomer);
 }
